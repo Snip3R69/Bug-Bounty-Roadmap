@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A 'Zero to Hero' Guide: Roadmap for Emerging Bug Bounty Hunters</title>
+  <title>README Viewer</title>
   <!-- Include Marked library -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
@@ -35,8 +35,13 @@
     }
   }
 
-  // Call the function to fetch and render the README content
-  fetchAndRenderReadme();
+  // Ensure marked library is loaded before calling fetchAndRenderReadme
+  if (typeof marked === 'undefined') {
+    console.error('Marked library is not loaded. Check the script src for marked.');
+  } else {
+    // Call the function to fetch and render the README content
+    fetchAndRenderReadme();
+  }
 </script>
 
 </body>
