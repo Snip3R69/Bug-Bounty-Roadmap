@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A 'Zero to Hero' Guide: Roadmap for Emerging Bug Bounty Hunters</title>
-  <!-- Include Marked library -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <title>README Viewer</title>
+  <!-- Include Showdown library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -27,21 +27,18 @@
       const response = await fetch('https://raw.githubusercontent.com/Snip3R69/Bug-Bounty-Roadmap/main/README.md');
       const readmeContent = await response.text();
 
-      // Use Marked library to convert Markdown to HTML and display it in the 'readmeContent' div
-      document.getElementById('readmeContent').innerHTML = marked(readmeContent);
+      // Use Showdown library to convert Markdown to HTML and display it in the 'readmeContent' div
+      const converter = new showdown.Converter();
+      const htmlContent = converter.makeHtml(readmeContent);
+      document.getElementById('readmeContent').innerHTML = htmlContent;
     } catch (error) {
       console.error('Error fetching README:', error);
       document.getElementById('readmeContent').innerHTML = '<p>Error fetching README. Please try again later.</p>';
     }
   }
 
-  // Ensure marked library is loaded before calling fetchAndRenderReadme
-  if (typeof marked === 'undefined') {
-    console.error('Marked library is not loaded. Check the script src for marked.');
-  } else {
-    // Call the function to fetch and render the README content
-    fetchAndRenderReadme();
-  }
+  // Call the function to fetch and render the README content
+  fetchAndRenderReadme();
 </script>
 
 </body>
